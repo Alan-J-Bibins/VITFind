@@ -1,3 +1,5 @@
+The hassle-free way for VIT students to find what's missing. Upload details of your lost items and connect with fellow students who might have found them.
+
 # Welcome to React Router!
 
 A modern, production-ready template for building full-stack React applications using React Router.
