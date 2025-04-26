@@ -17,8 +17,8 @@ export default function Navbar() {
             </NavLink>
             {!session && (
                 <button
-                    className="flex items-center justify-center gap-2 p-2 transition-all border-2 border-transparent rounded-full
-                    hover:bg-orange-200 hover:border-black"
+                    className="flex items-center justify-center gap-2 px-2 py-1 transition-all border-2 border-transparent rounded-full
+                    hover:bg-orange-200 hover:border-black active:bg-orange-200 active:border-black"
                     onClick={() => signIn.social({
                         provider: "google",
                         callbackURL: "/",
@@ -28,7 +28,7 @@ export default function Navbar() {
                 </button>
             )}
             {session && (
-                <NavLink to={href("/profile")} className={"hover:text-lg hover:text-red-800 transition-colors duration-200"}>
+                <NavLink to={href("/profile")} className={"hover:text-lg hover:text-red-800 transition-colors duration-200 p-1"}>
                     <MdAccountCircle size={24} />
                 </NavLink>
             )}
