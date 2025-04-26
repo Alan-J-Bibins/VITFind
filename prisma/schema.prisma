@@ -84,6 +84,7 @@ model Verification {
 model Post {
     id        String    @id @default(cuid())
     name      String
+    desc      String
     author    User      @relation(fields: [userId], references: [id])
     userId    String
     comments  Comment[]
