@@ -1,7 +1,17 @@
 import { useNavigation } from 'react-router';
 import { MdClose } from 'react-icons/md';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createContext, useContext } from 'react';
 import { createPortal } from 'react-dom';
+
+type DialogContextType = {
+    closeDialog: () => void;
+}
+
+const DialogContext = createContext<DialogContextType>({ closeDialog: () => { } });
+
+export function useDialogClose() {
+    return useContext(DialogContext);
+}
 
 export default function Dialog({
     trigger,
@@ -64,6 +74,10 @@ export default function Dialog({
         return () => document.removeEventListener('keydown', handleKeyDown);
     }, [isOpen])
 
+    const dialogContextValue = {
+        closeDialog: handleClose
+    };
+
     return (
         <>
             <button onClick={handleOpen} className={`cursor-pointer ${triggerClassName}`}>
@@ -110,7 +124,9 @@ export default function Dialog({
                                     />
                                 </button>
                             </div>
-                            {children}
+                            <DialogContext.Provider value={dialogContextValue}>
+                                {children}
+                            </DialogContext.Provider>
                             <div className="flex justify-between items-center w-full">
                                 <div />
                                 <div className='flex items-center justify-center gap-2'>
